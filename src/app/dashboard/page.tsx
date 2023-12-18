@@ -9,7 +9,7 @@ export default function Dashboard({
 }: {
   searchParams?: { [key: string]: string | string[] | undefined }
 }) {
-  const page = Number(searchParams?.page) ?? 1
+  const page = searchParams?.page ? Number(searchParams.page) : 1
 
   return (
     <main className="min-h-screen">
