@@ -1,11 +1,18 @@
 import { Header } from './components/header'
+import { Pagination } from './components/pagination'
 import { SearchForm } from './components/search-form'
 import { Summary } from './components/summary'
 import { TransactionsTable } from './components/transactions-table'
 
-export default function Dashboard() {
+export default function Dashboard({
+  searchParams,
+}: {
+  searchParams?: { [key: string]: string | string[] | undefined }
+}) {
+  const page = Number(searchParams?.page) ?? 1
+
   return (
-    <main className="min-h-screen bg-zinc-800">
+    <main className="min-h-screen">
       <Header />
       <Summary />
 
@@ -13,6 +20,10 @@ export default function Dashboard() {
         <SearchForm />
 
         <TransactionsTable />
+
+        <div className="mx-auto mt-10 w-fit">
+          <Pagination totalCount={200} perPage={10} currentPage={page} />
+        </div>
       </div>
     </main>
   )

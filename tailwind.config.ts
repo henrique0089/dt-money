@@ -54,6 +54,7 @@ module.exports = {
         zinc: {
           800: '#202024',
           700: '#29292E',
+          600: '#323238',
         },
       },
       borderRadius: {
