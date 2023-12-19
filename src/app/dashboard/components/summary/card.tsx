@@ -9,7 +9,7 @@ export function Card({ variant = 'zinc', children }: CardProps) {
   return (
     <div
       data-variant={variant}
-      className="data-[variant=green]:bg-brand-1 rounded-md p-8 data-[variant=zinc]:bg-zinc-700"
+      className="rounded-md p-8 data-[variant=green]:bg-brand-1 data-[variant=zinc]:bg-zinc-700"
     >
       {children}
     </div>

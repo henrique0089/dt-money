@@ -10,7 +10,7 @@ export function Summary() {
           <ArrowUpCircle className="stroke-brand-2" />
         </CardHeader>
 
-        <strong className="text-muted mt-4 block text-[2rem]">
+        <strong className="mt-4 block text-[2rem] text-muted">
           R$ 17.400,00
         </strong>
       </Card>
@@ -21,7 +21,7 @@ export function Summary() {
           <ArrowDownCircle className="stroke-red-700" />
         </CardHeader>
 
-        <strong className="text-muted mt-4 block text-[2rem]">
+        <strong className="mt-4 block text-[2rem] text-muted">
           R$ 1.259,00
         </strong>
       </Card>
@@ -32,7 +32,7 @@ export function Summary() {
           <DollarSign className="stroke-muted" />
         </CardHeader>
 
-        <strong className="text-muted mt-4 block text-[2rem]">
+        <strong className="mt-4 block text-[2rem] text-muted">
           R$ 16.141,00
         </strong>
       </Card>

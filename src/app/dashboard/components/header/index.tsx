@@ -1,6 +1,5 @@
-import { Button } from '@/components/ui/button'
-import { Plus } from 'lucide-react'
 import Image from 'next/image'
+import { NewTransactionDialog } from './new-transaction-dialog'
 import { UserNav } from './user-nav'
 
 export async function Header() {
@@ -11,10 +10,7 @@ export async function Header() {
       </div>
 
       <div className="mx-auto mt-6 flex w-full max-w-[70rem] items-center justify-between px-6">
-        <Button>
-          <Plus />
-          Nova transação
-        </Button>
+        <NewTransactionDialog />
 
         <UserNav />
       </div>
