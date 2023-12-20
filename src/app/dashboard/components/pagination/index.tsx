@@ -1,8 +1,10 @@
+'use client'
+
+import { useTransactionsStore } from '@/store/transactions-store'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { PaginationLink } from './pagination-link'
 
 interface PagninationProps {
-  totalCount: number
   perPage?: number
   currentPage?: number
 }
@@ -18,11 +20,12 @@ function generatePagesArray(from: number, to: number) {
 }
 
 export function Pagination({
-  totalCount,
   perPage = 10,
   currentPage = 1,
 }: PagninationProps) {
-  const lastPage = Math.ceil(totalCount / perPage)
+  const { total } = useTransactionsStore()
+
+  const lastPage = Math.ceil(total / perPage)
 
   const previousPages =
     currentPage > 1

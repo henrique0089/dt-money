@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 import { supabaseClient } from '@/lib/suabase'
+import { Transaction, useTransactionsStore } from '@/store/transactions-store'
 import { useAuth } from '@clerk/nextjs'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as RadioGroup from '@radix-ui/react-radio-group'
@@ -31,6 +32,7 @@ type newTransactionFormInputsType = z.infer<typeof newTransactionFormSchema>
 
 export function NewTransactionDialog() {
   const [open, setOpen] = useState(false)
+  const { addTransaction } = useTransactionsStore()
 
   const {
     control,
@@ -56,17 +58,23 @@ export function NewTransactionDialog() {
 
     const supabase = await supabaseClient(token)
 
-    const { error } = await supabase.from('transactions').insert({
+    const { error, data } = await supabase.from('transactions').insert({
       'description': description,
       'type': type,
       'category': category,
       'price': price * 100,
       'user_id': userId,
-    })
+    }).select('*').single()
 
     if (error) {
       console.log(error)
     }
+
+    if (!data) return
+
+    const transaction = data as Transaction
+
+    addTransaction(transaction)
 
     reset()
     setOpen(false)

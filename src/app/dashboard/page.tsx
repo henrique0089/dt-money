@@ -19,10 +19,10 @@ export default function Dashboard({
       <div className="mx-auto my-16 w-full max-w-[70rem] px-6">
         <SearchForm />
 
-        <TransactionsTable />
+        <TransactionsTable perPage={5} currentPage={page} />
 
         <div className="mx-auto mt-10 w-fit">
-          <Pagination totalCount={200} perPage={10} currentPage={page} />
+          <Pagination perPage={5} currentPage={page} />
         </div>
       </div>
     </main>
