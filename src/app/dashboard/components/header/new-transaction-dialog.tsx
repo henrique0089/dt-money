@@ -1,3 +1,5 @@
+/* eslint-disable object-shorthand */
+/* eslint-disable prettier/prettier */
 'use client'
 
 import { Button } from '@/components/ui/button'
@@ -9,6 +11,8 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
+import { supabaseClient } from '@/lib/suabase'
+import { useAuth } from '@clerk/nextjs'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as RadioGroup from '@radix-ui/react-radio-group'
 import { ArrowDownCircle, ArrowUpCircle, Loader2, Plus } from 'lucide-react'
@@ -38,10 +42,31 @@ export function NewTransactionDialog() {
     resolver: zodResolver(newTransactionFormSchema),
   })
 
-  async function handleCreateNewTransaction(
-    data: newTransactionFormInputsType,
-  ) {
-    console.log(data)
+  const { userId, getToken } = useAuth()
+
+  async function handleCreateNewTransaction({
+    description,
+    category,
+    price,
+    type,
+  }: newTransactionFormInputsType) {
+    const token = await getToken({ template: 'dtmoney-supabase' })
+
+    if (!token) return
+
+    const supabase = await supabaseClient(token)
+
+    const { error } = await supabase.from('transactions').insert({
+      'description': description,
+      'type': type,
+      'category': category,
+      'price': price * 100,
+      'user_id': userId,
+    })
+
+    if (error) {
+      console.log(error)
+    }
 
     reset()
     setOpen(false)
