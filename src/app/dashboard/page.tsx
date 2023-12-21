@@ -16,7 +16,7 @@ export default function Dashboard({
       <Header />
       <Summary />
 
-      <div className="mx-auto my-16 w-full max-w-[70rem] px-6">
+      <div className="mx-auto my-16 w-full max-w-[70rem] px-6 max-[500px]:mb-[70px] max-[500px]:mt-6">
         <SearchForm />
 
         <TransactionsTable perPage={5} currentPage={page} />

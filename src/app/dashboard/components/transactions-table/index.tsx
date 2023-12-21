@@ -63,16 +63,22 @@ export function TransactionsTable({
       <TableBody>
         {transactions.map((t) => (
           <TableRow key={t.id}>
-            <TableCell>{t.description}</TableCell>
+            <TableCell>
+              <div className="max-[500px]:w-60">{t.description}</div>
+            </TableCell>
             <TableCell
               data-type={t.type}
               className="data-[type=income]:text-brand-1 data-[type=outcome]:text-red-700"
             >
-              {t.type === 'income'
-                ? formatPrice(t.price)
-                : `- ${formatPrice(t.price)}`}
+              <div className="max-[500px]:w-32">
+                {t.type === 'income'
+                  ? formatPrice(t.price)
+                  : `- ${formatPrice(t.price)}`}
+              </div>
             </TableCell>
-            <TableCell>{t.category}</TableCell>
+            <TableCell>
+              <div className="max-[500px]:w-32">{t.category}</div>
+            </TableCell>
             <TableCell>{dayjs(t.createdAt).format('DD/MM/YYYY')}</TableCell>
           </TableRow>
         ))}

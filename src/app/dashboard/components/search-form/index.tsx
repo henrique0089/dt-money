@@ -62,7 +62,7 @@ export function SearchForm() {
         ) : (
           <>
             <Search className="h-5 w-5 stroke-brand-1 group-hover:stroke-primary-foreground" />
-            <span className="text-brand-1 group-hover:text-primary-foreground">
+            <span className="text-brand-1 group-hover:text-primary-foreground max-[500px]:hidden">
               Buscar
             </span>
           </>

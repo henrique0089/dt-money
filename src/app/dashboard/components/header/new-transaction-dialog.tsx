@@ -85,7 +85,7 @@ export function NewTransactionDialog() {
       <DialogTrigger asChild>
         <Button>
           <Plus />
-          Nova transação
+          <span>Nova transação</span>
         </Button>
       </DialogTrigger>
 
