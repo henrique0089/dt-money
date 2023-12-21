@@ -27,7 +27,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           formFieldInput:
             'flex h-9 w-full rounded-md border border-zinc-600 bg-transparent px-3 py-1 text-sm text-muted shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-muted disabled:cursor-not-allowed disabled:opacity-50',
           formButtonPrimary:
-            'inline-flex normal-case tracking-normal bg-muted text-zinc-900 shadow hover:bg-muted/90 h-9 px-4 py-2 items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50',
+            'inline-flex normal-case tracking-normal bg-brand-1 text-primary-foreground shadow hover:bg-brand-1/90 h-9 px-4 py-2 items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50',
           socialButtonsBlockButton:
             'tracking-normal text-zinc-400 normal-case border border-zinc-600 bg-transparent shadow-sm hover:text-muted h-8 rounded-md px-3 text-xs inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-muted disabled:pointer-events-none disabled:opacity-50',
           footerActionText: 'text-zinc-400',
