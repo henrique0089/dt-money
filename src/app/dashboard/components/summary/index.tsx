@@ -1,7 +1,35 @@
+'use client'
+
+import { useTransactionsStore } from '@/store/transactions-store'
+import { formatPrice } from '@/utils/format-price'
 import { ArrowDownCircle, ArrowUpCircle, DollarSign } from 'lucide-react'
+import { useMemo } from 'react'
 import { Card, CardHeader } from './card'
 
 export function Summary() {
+  const { allTransactions: transactions } = useTransactionsStore()
+
+  const summary = useMemo(() => {
+    return transactions.reduce(
+      (acc, transaction) => {
+        if (transaction.type === 'income') {
+          acc.income += transaction.price
+          acc.total += transaction.price
+        } else {
+          acc.outcome += transaction.price
+          acc.total -= transaction.price
+        }
+
+        return acc
+      },
+      {
+        income: 0,
+        outcome: 0,
+        total: 0,
+      },
+    )
+  }, [transactions])
+
   return (
     <section className="mx-auto -mt-12 grid w-full max-w-[70rem] grid-cols-3 gap-8 px-6">
       <Card>
@@ -11,7 +39,7 @@ export function Summary() {
         </CardHeader>
 
         <strong className="mt-4 block text-[2rem] text-muted">
-          R$ 17.400,00
+          {formatPrice(summary.income)}
         </strong>
       </Card>
 
@@ -22,7 +50,7 @@ export function Summary() {
         </CardHeader>
 
         <strong className="mt-4 block text-[2rem] text-muted">
-          R$ 1.259,00
+          {formatPrice(summary.outcome)}
         </strong>
       </Card>
 
@@ -33,7 +61,7 @@ export function Summary() {
         </CardHeader>
 
         <strong className="mt-4 block text-[2rem] text-muted">
-          R$ 16.141,00
+          {formatPrice(summary.total)}
         </strong>
       </Card>
     </section>

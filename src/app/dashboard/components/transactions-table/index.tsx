@@ -17,7 +17,8 @@ export function TransactionsTable({
   perPage = 5,
   currentPage = 1,
 }: TransactionsTableProps) {
-  const { transactions, setTransactions, setTotal } = useTransactionsStore()
+  const { transactions, setTransactions, setTotal, setAllTransactions } =
+    useTransactionsStore()
 
   const { getToken, userId } = useAuth()
 
@@ -42,11 +43,20 @@ export function TransactionsTable({
       const transactions = data?.slice(from, to) as Transaction[]
       setTotal(data?.length ?? 0)
 
+      setAllTransactions(data as Transaction[])
       setTransactions(transactions)
     }
 
     loadTransactions()
-  }, [currentPage, getToken, perPage, setTotal, setTransactions, userId])
+  }, [
+    currentPage,
+    getToken,
+    perPage,
+    setAllTransactions,
+    setTotal,
+    setTransactions,
+    userId,
+  ])
 
   return (
     <Table className="mt-6">
